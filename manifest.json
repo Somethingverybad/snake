@@ -2,5 +2,18 @@
   "name": "Змейка PWA",
   "description": "Игра Змейка с виброоткликом",
   "display": "standalone",
-  "permissions": ["vibration"]
+  "permissions": ["vibration"],
+  "icons": [
+    {
+      "src": "favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
+

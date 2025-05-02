@@ -153,7 +153,7 @@ function gameLoop() {
         drawSnake();
         checkCollision();
         gameLoop();
-    }, 100);
+    }, 90);
 }
 
 function clearCanvas() {
