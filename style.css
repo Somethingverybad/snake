@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background: #f0f0f0;
+    background: black;
     margin: 0;
     padding: 20px;
 }
@@ -38,7 +38,7 @@ canvas {
     border: 2px  solid #333;
     display: block;
     border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
 #score {
