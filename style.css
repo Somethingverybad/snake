@@ -10,7 +10,10 @@ body {
     touch-action: none;
     overflow: hidden;
 }
-
+#gameCanvas {
+    z-index: 2;
+    background-color: transparent;
+}
 #restartBtn {
     margin-top: 10px;
     padding: 10px 20px;
@@ -105,4 +108,26 @@ canvas {
     margin: 10px;
     color: #333;
     font-weight: bold;
+}
+
+.canvas-wrapper {
+    position: relative;
+    width: 480px;
+    height: 480px;
+    margin: 0 auto;
+}
+
+#fireCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* под игровым холстом */
+}
+
+#gameCanvas {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    z-index: 1; /* поверх огня */
+    background-color: black;
 }

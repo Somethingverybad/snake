@@ -25,7 +25,11 @@
 <div class="container">
 
     <div id="score">Очки: 0</div>
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div class="canvas-wrapper">
+        <canvas id="fireCanvas" width="480" height="480"></canvas> <!-- Внешняя -->
+        <canvas id="gameCanvas" width="400" height="400"></canvas> <!-- Игровая -->
+    </div>
+
     <button id="musicToggle">Музыка Вкл/Выкл</button>
     <button id="restartBtn" style="display: none;">Начать заново</button>
     <div class="mobile-controls">
@@ -40,6 +44,7 @@
     </div>
 </div>
 <script src="game.js"></script>
+<script src="fire.js"></script>
 <script>
     // Регистрируем Service Worker
     if ('serviceWorker' in navigator) {

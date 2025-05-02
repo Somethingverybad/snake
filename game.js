@@ -51,7 +51,7 @@ function toggleBackgroundMusic() {
     if (backgroundMusic.paused) {
         backgroundMusic.play().catch(e => console.log("Не удалось воспроизвести музыку:", e));
     } else {
-        backgroundMusic.pause();
+        backgroundMusic.play();
     }
 }
 document.getElementById('musicToggle').addEventListener('click', toggleBackgroundMusic);
@@ -146,6 +146,8 @@ document.getElementById('right').addEventListener('click', () => {
     if (direction.x === 0) direction = { x: 1, y: 0 };
 });
 
+
+
 // Главный игровой цикл
 function gameLoop() {
     if (gameOver) {
@@ -156,6 +158,9 @@ function gameLoop() {
         // Показываем кнопку рестарта
         document.getElementById('restartBtn').style.display = 'block';
         return;
+    }else{
+
+        document.getElementById('restartBtn').style.display = 'none';
     }
 
 
@@ -179,6 +184,13 @@ function drawSnake() {
         ctx.fillStyle = index === 0 ? 'lime' : 'green';
         ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
     });
+}
+
+
+
+function hexToRgb(hex) {
+    const bigint = parseInt(hex.slice(1), 16);
+    return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
 }
 
 function drawFood() {
