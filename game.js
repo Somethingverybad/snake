@@ -1,7 +1,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
-const gridSize = 20;
+const gridSize = 10;
 const tileCount = canvas.width / gridSize;
 
 let snake = [{ x: 10, y: 10 }];
@@ -151,8 +151,8 @@ document.getElementById('right').addEventListener('click', () => {
 // Главный игровой цикл
 function gameLoop() {
     if (gameOver) {
-        ctx.fillStyle = 'white';
-        ctx.font = '40px Arial';
+        ctx.fillStyle = 'black';
+        ctx.font = '40px Impact';
         ctx.fillText('Вы потрачено!', canvas.width / 4, canvas.height / 2);
 
         // Показываем кнопку рестарта
@@ -171,12 +171,11 @@ function gameLoop() {
         drawSnake();
         checkCollision();
         gameLoop();
-    }, 90);
+    }, 80);
 }
 
 function clearCanvas() {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Очищает канвас, оставляя фон прозрачным
 }
 
 function drawSnake() {

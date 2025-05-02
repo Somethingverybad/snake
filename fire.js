@@ -67,27 +67,65 @@ function updateFire() {
 
 function drawFire() {
     const imageData = fireCtx.createImageData(fireWidth, fireHeight);
+    const data = imageData.data;
+
+    // Отрисовываем оригинальное изображение огня
     for (let i = 0; i < firePixels.length; i++) {
         const colorIndex = firePixels[i];
         const hex = fireColorsPalette[colorIndex];
         const color = hex ? hexToRgb(hex) : { r: 0, g: 0, b: 0 };
 
         const index = i * 4;
-        imageData.data[index + 0] = color.r;
-        imageData.data[index + 1] = color.g;
-        imageData.data[index + 2] = color.b;
-        imageData.data[index + 3] = 255;
+        data[index + 0  ] = color.r;
+        data[index + 1] = color.g;
+        data[index + 2] = color.b;
+        data[index + 3] = 255; // Прозрачность
     }
 
-    // Применяем сдвиг канваса
-    fireCtx.clearRect(0, 0, fireCanvas.width, fireCanvas.height); // Очищаем канвас перед рисованием
-    fireCtx.putImageData(imageData, offsetX, offsetY); // Сдвигаем огонь по осям X и Y
-}
+    fireCtx.clearRect(0, 0, fireCanvas.width, fireCanvas.height);
 
+    // Отображаем оригинальное изображение
+    fireCtx.putImageData(imageData, offsetX, offsetY);
+
+    // Отображаем повёрнутые копии огня
+    const centerX = fireWidth / 2;
+    const centerY = fireHeight / 2;
+
+    fireCtx.save();
+
+    // Поворот на 90 градусов (правый верхний угол)
+    fireCtx.translate(centerX, centerY);
+    fireCtx.rotate(Math.PI / 2);
+    fireCtx.translate(-centerX, -centerY);
+    fireCtx.putImageData(imageData, offsetX, offsetY);
+
+    fireCtx.restore();
+
+    fireCtx.save();
+
+    // Поворот на 180 градусов (правый нижний угол)
+    fireCtx.translate(centerX, centerY);
+    fireCtx.rotate(Math.PI);
+    fireCtx.translate(-centerX, -centerY);
+    fireCtx.putImageData(imageData, offsetX, offsetY);
+
+    fireCtx.restore();
+
+    fireCtx.save();
+
+    // Поворот на 270 градусов (левый нижний угол)
+    fireCtx.translate(centerX, centerY);
+    fireCtx.rotate(3 * Math.PI / 2);
+    fireCtx.translate(-centerX, -centerY);
+    fireCtx.putImageData(imageData, offsetX, offsetY);
+
+    fireCtx.restore();
+}
 function loop() {
     updateFire();
     drawFire();
-    requestAnimationFrame(loop);
+    // Чтобы уменьшить частоту обновлений, можно сделать задержку или использовать requestAnimationFrame с условиями
+    setTimeout(() => requestAnimationFrame(loop), 16); // ~60 кадров в секунду
 }
 
 function hexToRgb(hex) {
