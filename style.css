@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+body {
+    touch-action: none;
+    overflow: hidden;
+}
+
+#restartBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#restartBtn:hover {
+    background-color: #45a049;
+}
+
+h1 {
+    color: #333;
+}
+
+canvas {
+    background: #000;
+    border: 2px solid #333;
+    margin: 10px 0;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+#score {
+    font-size: 24px;
+    margin: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+.mobile-controls {
+    display: none;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.d-pad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.horizontal {
+    display: flex;
+    gap: 60px; /* Расстояние между ← и → */
+}
+
+.mobile-controls button {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#up { transform: translateY(20px); }
+#down { transform: translateY(-20px); }
+
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+    }
+
+    canvas {
+        width: 80vw; /* Уменьшаем ширину канвы для мобильных устройств */
+        height: 80vw; /* Пропорционально уменьшаем высоту канвы */
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Изменяем на 'flex-start', чтобы канва располагалась выше */
+    max-width: 100vw;
+    padding: 20px;
+    height: 100vh; /* Задаём высоту контейнера для всего экрана */
+    overflow: hidden;
+}
+
+#score {
+    font-size: 24px;
+    margin: 10px;
+    color: #333;
+    font-weight: bold;
+}

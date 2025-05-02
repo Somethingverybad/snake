@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Змейка PWA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">  <!-- Добавляем манифест -->
+</head>
+<body>
+<div class="container">
+    <button id="restartBtn" style="display: none;">Начать заново</button>
+    <div id="score">Очки: 0</div>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div class="mobile-controls">
+        <div class="d-pad">
+            <button id="up">↑</button>
+            <div class="horizontal">
+                <button id="left">←</button>
+                <button id="right">→</button>
+            </div>
+            <button id="down">↓</button>
+        </div>
+    </div>
+</div>
+<script src="game.js"></script>
+<script>
+    // Регистрируем Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then(() => console.log('SW registered'))
+            .catch(err => console.log('SW error:', err));
+    }
+</script>
+</body>
+</html>

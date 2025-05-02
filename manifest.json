@@ -1,0 +1,6 @@
+{
+  "name": "Змейка PWA",
+  "description": "Игра Змейка с виброоткликом",
+  "display": "standalone",
+  "permissions": ["vibration"]
+}
