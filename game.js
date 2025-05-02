@@ -42,6 +42,19 @@ const messages = [
     "ДУШИ УДАВА!"
 ];
 
+const backgroundMusic = new Audio('soundtrack.mp3');
+backgroundMusic.loop = true; // Зацикливаем музыку
+backgroundMusic.volume = 0.5; // Уменьшаем громкость (0.5 = 50%)
+
+// Функция для управления фоновой музыкой
+function toggleBackgroundMusic() {
+    if (backgroundMusic.paused) {
+        backgroundMusic.play().catch(e => console.log("Не удалось воспроизвести музыку:", e));
+    } else {
+        backgroundMusic.pause();
+    }
+}
+document.getElementById('musicToggle').addEventListener('click', toggleBackgroundMusic);
 // Функция для показа анимированного сообщения
 function showAnimatedMessage() {
     const message = messages[Math.floor(Math.random() * messages.length)];
