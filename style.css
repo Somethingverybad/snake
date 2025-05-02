@@ -10,10 +10,12 @@ body {
     touch-action: none;
     overflow: hidden;
 }
+
 #gameCanvas {
     z-index: 2;
     background-color: transparent;
 }
+
 #restartBtn {
     margin-top: 10px;
     padding: 10px 20px;
@@ -87,8 +89,10 @@ canvas {
     }
 
     canvas {
-        width: 80vw; /* Уменьшаем ширину канвы для мобильных устройств */
-        height: 80vw; /* Пропорционально уменьшаем высоту канвы */
+        width: 80vw; /* Используем viewport для мобильных устройств */
+        height: 80vw; /* Пропорционально уменьшаем высоту канваса */
+        max-width: 100%; /* Убедитесь, что канвас не выходит за пределы экрана */
+        max-height: 100%; /* Обеспечиваем, чтобы канвас не превышал высоту экрана */
     }
 }
 
@@ -96,10 +100,10 @@ canvas {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Изменяем на 'flex-start', чтобы канва располагалась выше */
+    justify-content: flex-start;
     max-width: 100vw;
     padding: 20px;
-    height: 100vh; /* Задаём высоту контейнера для всего экрана */
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -112,8 +116,8 @@ canvas {
 
 .canvas-wrapper {
     position: relative;
-    width: 480px;
-    height: 480px;
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
 }
 
@@ -126,8 +130,8 @@ canvas {
 
 #gameCanvas {
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 0;
+    left: 0;
     z-index: 1; /* поверх огня */
     background-color: black;
 }
