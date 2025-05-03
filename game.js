@@ -62,7 +62,7 @@ function toggleBackgroundMusic() {
     if (backgroundMusic.paused) {
         backgroundMusic.play().catch(e => console.log("Не удалось воспроизвести музыку:", e));
     } else {
-        backgroundMusic.paused();
+        backgroundMusic.pause();
     }
 }
 document.getElementById('musicToggle').addEventListener('click', toggleBackgroundMusic);
