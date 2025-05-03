@@ -44,14 +44,25 @@ const messages = [
 
 const backgroundMusic = new Audio('soundtrack.mp3');
 backgroundMusic.loop = true; // Зацикливаем музыку
-backgroundMusic.volume = 0.5; // Уменьшаем громкость (0.5 = 50%)
+backgroundMusic.volume = 0.3; // Уменьшаем громкость (0.5 = 50%)
+function initAudioOnInteraction() {
+    backgroundMusic.play().catch(e => console.log("Автозапуск отклонён:", e));
+    document.removeEventListener('click', initAudioOnInteraction);
+    document.removeEventListener('keydown', initAudioOnInteraction);
+    document.removeEventListener('touchstart', initAudioOnInteraction);
+}
+
+// Запускаем после первого взаимодействия
+document.addEventListener('click', initAudioOnInteraction);
+document.addEventListener('keydown', initAudioOnInteraction);
+document.addEventListener('touchstart', initAudioOnInteraction);
 
 // Функция для управления фоновой музыкой
 function toggleBackgroundMusic() {
     if (backgroundMusic.paused) {
         backgroundMusic.play().catch(e => console.log("Не удалось воспроизвести музыку:", e));
     } else {
-        backgroundMusic.play();
+        backgroundMusic.paused();
     }
 }
 document.getElementById('musicToggle').addEventListener('click', toggleBackgroundMusic);
