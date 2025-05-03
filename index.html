@@ -26,12 +26,13 @@
 
     <div id="score">Очки: 0</div>
     <div class="canvas-wrapper">
-        <div style="position: relative; width: 400px; height: 400px;">
-            <img src="fireball-hell-hole.gif" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" />
-            <canvas id="gameCanvas" width="400" height="400" style="position: absolute; top: 0; left: 0;"></canvas>
-        </div>
+        <div class="canvas-container">
 
+            <img class="gif"  src="fireball-hell-hole.gif" />
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+        </div>
     </div>
+
 
     <button id="musicToggle">Музыка Вкл/Выкл</button>
     <button id="restartBtn" style="display: none;">Начать заново</button>

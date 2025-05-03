@@ -168,10 +168,15 @@ function gameLoop() {
 
         // Показываем кнопку рестарта
         document.getElementById('restartBtn').style.display = 'block';
+        document.body.classList.add('restart-mode');
+
         return;
     }else{
 
         document.getElementById('restartBtn').style.display = 'none';
+        // Когда пользователь начинает новую игру (например, после нажатия на кнопку)
+        document.body.classList.remove('restart-mode');
+
     }
 
 

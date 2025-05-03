@@ -1,3 +1,4 @@
+/* Общие стили */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -5,20 +6,76 @@ body {
     margin: 0;
     padding: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    touch-action: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
 }
 
-body {
-    touch-action: none;
-    overflow: hidden;
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
-#gameCanvas {
+
+#score {
+    font-size: 24px;
+    margin: 10px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+/* Обёртка для канвы и gif */
+.canvas-wrapper {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    margin: 0 auto;
+}
+
+/* Контейнер для абсолютных элементов */
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+}
+
+canvas, .gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+canvas {
     z-index: 2;
     background-color: transparent;
+    border: 2px solid #333;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
+
+.gif {
+    z-index: 1;
+}
+
+/* Кнопки */
+#musicToggle,
 #restartBtn {
-    margin-top: 10px;
+    margin-top: 15px;
     padding: 10px 20px;
     font-size: 18px;
     background-color: #4CAF50;
@@ -28,33 +85,19 @@ body {
     cursor: pointer;
 }
 
-#restartBtn:hover {
+#restartBtn:hover,
+#musicToggle:hover {
     background-color: #45a049;
 }
 
-h1 {
-    color: #333;
-}
-
-canvas {
-    background: #000;
-    border: 2px  solid #333;
-    display: block;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-}
-
-#score {
-    font-size: 24px;
-    margin: 10px;
-    color: #333;
-    font-weight: bold;
-}
-
+/* Мобильные кнопки */
 .mobile-controls {
+    margin-top: 20px;
     display: none;
-    margin-top: 5px;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .d-pad {
@@ -66,7 +109,7 @@ canvas {
 
 .horizontal {
     display: flex;
-    gap: 60px; /* Расстояние между ← и → */
+    gap: 60px;
 }
 
 .mobile-controls button {
@@ -80,35 +123,93 @@ canvas {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-#up { transform: translateY(20px); }
-#down { transform: translateY(-20px); }
+#up {
+    transform: translateY(20px);
+}
+#down {
+    transform: translateY(-20px);
+}
 
+/* Мобильная адаптация */
 @media (max-width: 768px) {
+    .canvas-wrapper {
+        width: 80vw;
+        max-width: 80vw;
+        height: 80vw;
+        aspect-ratio: 1 / 1;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
     .mobile-controls {
         display: flex;
     }
 
-    canvas {
-        width: 80vw; /* Уменьшаем ширину канвы для мобильных устройств */
-        height: 80vw; /* Пропорционально уменьшаем высоту канвы */
+    #musicToggle,
+    #restartBtn {
+        font-size: 16px;
+        padding: 8px 16px;
     }
 }
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Изменяем на 'flex-start', чтобы канва располагалась выше */
-    max-width: 100vw;
-    padding: 20px;
-    height: 100vh; /* Задаём высоту контейнера для всего экрана */
-    overflow: hidden;
+#restartBtn {
+    display: none; /* по умолчанию */
+    margin: 20px auto 0;
+    text-align: center;
 }
 
-#score {
-    font-size: 24px;
-    margin: 10px;
-    color: #333;
-    font-weight: bold;
+body.restart-mode .mobile-controls {
+    display: none !important;
 }
 
+body.restart-mode #restartBtn {
+    display: block;
+}
+
+/* Металлический стиль для обычных кнопок */
+#musicToggle,
+#restartBtn,
+.mobile-controls button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #f5f5f5;
+    background: linear-gradient(to top, #555 0%, #aaa 50%, #eee 100%);
+    border: 1px solid #888;
+    border-radius: 10px;
+    box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.6),
+            0 3px 5px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Металлический стиль для d-pad кнопок */
+.mobile-controls button {
+    width: 70px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 12px;
+}
+
+/* Hover эффект */
+#musicToggle:hover,
+#restartBtn:hover,
+.mobile-controls button:hover {
+    background: linear-gradient(to top, #666 0%, #bbb 50%, #fff 100%);
+    box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.8),
+            0 4px 6px rgba(0,0,0,0.4);
+}
+
+/* Активация */
+#musicToggle:active,
+#restartBtn:active,
+.mobile-controls button:active {
+    background: linear-gradient(to top, #444 0%, #888 50%, #ccc 100%);
+    box-shadow:
+            inset 0 2px 4px rgba(0,0,0,0.6),
+            0 1px 2px rgba(0,0,0,0.3);
+}
