@@ -221,7 +221,7 @@ function drawFood() {
     ctx.fill();
 
     // Обводка
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 10;
     ctx.strokeStyle = 'white';
     ctx.stroke();
 }
