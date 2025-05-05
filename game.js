@@ -210,6 +210,8 @@ function hexToRgb(hex) {
 
 function drawFood() {
     ctx.fillStyle = 'red';
+    ctx.borderRadius = 20;
+    ctx.borderColor = 'white';
     ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
 }
 
