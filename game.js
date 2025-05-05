@@ -209,10 +209,21 @@ function hexToRgb(hex) {
 }
 
 function drawFood() {
+    const centerX = food.x * gridSize + gridSize/2;
+    const centerY = food.y * gridSize + gridSize/2;
+    const radius = gridSize/2 - 1;
+
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+
+    // Заливка
     ctx.fillStyle = 'red';
-    ctx.borderRadius = 20;
-    ctx.borderColor = 'white';
-    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+    ctx.fill();
+
+    // Обводка
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'white';
+    ctx.stroke();
 }
 
 function moveSnake() {
